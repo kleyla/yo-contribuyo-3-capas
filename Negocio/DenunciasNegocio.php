@@ -1,36 +1,27 @@
 <?php
 
-class DenunciasNegocio extends Controllers
+class DenunciasNegocio extends Negocio
 {
     public function __construct()
     {
-        session_start();
-        if (empty($_SESSION['login'])) {
-            header('Location: ' . base_url() . 'login');
-        }
         parent::__construct();
     }
-    public function setDenuncia()
+    public function setDenuncia($intIdArticulo, $strRazones)
     {
         try {
-            $intIdArticulo = intval($_POST["idArticulo"]);
-            $strRazones = strClean($_POST["txtRazones"]);
-            if ($intIdArticulo != '' && $strRazones != '') {
-                $request = $this->model->insertDenuncia($intIdArticulo, $strRazones);
-                // dep($request);
-                if ($request == 0) {
-                    $arrResponse = array('status' => true, 'msg' => "Datos guardados correctamente");
-                } elseif ($request === 'existe') {
-                    $arrResponse = array('status' => false, 'msg' => "Ya realizo la denuncia");
-                } else {
-                    $arrResponse = array('status' => false, 'msg' => $request);
-                }
+            $this->dato->setArticuloId($intIdArticulo);
+            $this->dato->setUsuarioId($_SESSION['idUser']);
+            $this->dato->setRazones($strRazones);
+            $request = $this->dato->insertDenuncia();
+            // dep($request);
+            if ($request == 0) {
+                $arrResponse = array('status' => true, 'msg' => "Datos guardados correctamente");
+            } elseif ($request === 'existe') {
+                $arrResponse = array('status' => false, 'msg' => "Ya realizo la denuncia");
             } else {
-                $arrResponse = array('status' => false, 'msg' => "Datos incompletos!");
+                $arrResponse = array('status' => false, 'msg' => $request);
             }
-            // dep($arrResponse);
-            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-            die();
+            return $arrResponse;
         } catch (Exception $e) {
             echo $e->getMessage();
         }

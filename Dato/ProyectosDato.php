@@ -90,15 +90,6 @@ class ProyectosDato extends Mysql
                 $sql = "UPDATE proyectos SET nombre = ?, descripcion = ?, repositorio = ?, tags = ? WHERE id_proyecto = $this->intId";
                 $arrData = array($this->strNombre, $this->strDescripcion, $this->strRepositorio, $this->strTags);
                 $request = $this->update($sql, $arrData);
-                // Eliminando anteriores lengujes
-                $sqlDel = "DELETE FROM proyecto_lenguaje WHERE proyecto_id = $this->intId";
-                $request_del = $this->delete($sqlDel);
-                // registrando nuevos
-                // foreach ($this->arrayLenguajes as $lenguaje => $value) {
-                //     $query_insert = "INSERT INTO proyecto_lenguaje(proyecto_id, lenguaje_id) VALUES (?,?)";
-                //     $arrData = array($this->intId, $value);
-                //     $request_insert = $this->insert($query_insert, $arrData);
-                // }
                 return $request;
             } else {
                 throw new Exception("exist");

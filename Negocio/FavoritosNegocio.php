@@ -28,16 +28,17 @@ class FavoritosNegocio extends Negocio
                 $this->accion->setProyectoId($intIdProyecto);
                 $accionId = $this->accion->insertAccion();
                 $this->dato->setAccionId($accionId);
-                $request = $this->dato->insertFavorito($intIdProyecto);
+                $request = $this->dato->insertFavorito();
             } else {
                 $accion_id = $this->dato->existeFavorito($intIdProyecto);
                 if ($accion_id > 0) {
                     // FAVORITO
                     $this->dato->setAccionId($accion_id);
-                    $request = $this->dato->deleteFavorito();
+                    $request_delete = $this->dato->deleteFavorito();
                     // ACCION
                     $this->accion->setId($accion_id);
-                    $request_accion = $this->accion->deleteAccion();
+                    $request_delete = $this->accion->deleteAccion();
+                    $request = $accion_id;
                 } else {
                     $request = 0;
                 }
