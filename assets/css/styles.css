@@ -1,0 +1,30 @@
+.app-sidebar__user-avatar {
+  width: 48px;
+  background: #fff;
+  padding: 6px;
+}
+.headerRegister {
+  background: #009688;
+  color: #fff;
+}
+.headerUpdate {
+  background: #007bff;
+  color: #fff;
+}
+.notBlock {
+  display: none !important;
+}
+.user-img {
+  background: #fff;
+  padding: 6px;
+}
+.required {
+  color: red;
+  font-size: 13px;
+  font-weight: bold;
+}
+.register-box {
+  min-height: 500px !important;
+  min-width: 450px !important;
+}
+
