@@ -36,7 +36,8 @@ CREATE TABLE lenguajes (
 CREATE TABLE proyecto_lenguaje (
   proyecto_id INT NOT NULL,
   lenguaje_id INT NOT NULL,
-  
+  PRIMARY KEY (proyecto_id, lenguaje_id),
+
   FOREIGN KEY (proyecto_id) REFERENCES proyectos(id_proyecto) ON UPDATE CASCADE ON DELETE RESTRICT,
   FOREIGN KEY (lenguaje_id) REFERENCES lenguajes(id_lenguaje) ON UPDATE CASCADE ON DELETE RESTRICT
   

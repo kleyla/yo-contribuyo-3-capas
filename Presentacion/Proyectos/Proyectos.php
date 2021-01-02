@@ -4,6 +4,7 @@ class Proyectos extends Presentacion
 {
     public function __construct()
     {
+        // echo "mensaje desde la presentacion";
         session_start();
         if (empty($_SESSION['login'])) {
             header('Location: ' . base_url() . 'login');

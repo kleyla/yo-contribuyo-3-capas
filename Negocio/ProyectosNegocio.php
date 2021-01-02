@@ -2,9 +2,12 @@
 
 class ProyectosNegocio extends Negocio
 {
+    private $proyectoLenguaje;
     public function __construct()
     {
         parent::__construct();
+        require_once("Dato/ProyectoLenguajeDato.php");
+        $this->proyectoLenguaje = new ProyectoLenguajeDato();
     }
 
     public function getProyectos()
@@ -34,37 +37,36 @@ class ProyectosNegocio extends Negocio
         }
         return $arrData;
     }
-    public function form($id = 0)
-    {
-        $data["page_id"] = 1;
-        $data["page_tag"] = "Proyectos";
-        $data["page_title"] = "Proyectos - Formulario";
-        $data["page_name"] = "proyectos";
-        $data["script"] = "js/functions_proyectos_nuevo.js";
-        $lenguajes = $this->model->allActive();
-        $data["lenguajes"] = $lenguajes;
-        $data["id_proyecto"] = $id;
-        // dep($lenguajes);
-        $this->views->getView($this, "form", $data);
-    }
     public function setProyecto(int $intIdProyecto, string $strNombre, string $strDescripcion, string $strRepositorio, array $arrayLenguajes, string $strTags)
     {
         $this->dato->setNombre($strNombre);
         $this->dato->setDescripcion($strDescripcion);
         $this->dato->setRepositorio($strRepositorio);
         $this->dato->setTags($strTags);
-        $this->dato->setLenguajes($arrayLenguajes);
         $this->dato->setUsuarioId($_SESSION['idUser']);
+        // $this->dato->setLenguajes($arrayLenguajes);
 
         if ($intIdProyecto == 0) {
             // Crear
             $request_proyecto = $this->dato->insertProyecto();
+            // PROYECTO LENGUAJE
+            $this->proyectoLenguaje->setProyectoId($request_proyecto);
+            foreach ($arrayLenguajes as $lenguaje => $value) {
+                $this->proyectoLenguaje->setLenguajeId($value);
+                $request_proyecto_lenguaje = $this->proyectoLenguaje->insertProyectoLenguaje();
+            }
             $option = 1;
             // echo json_encode($request_proyecto);
         } else {
             // Update
             $this->dato->setId($intIdProyecto);
             $request_proyecto = $this->dato->updateProyecto();
+            $this->proyectoLenguaje->setProyectoId($intIdProyecto);
+            $this->proyectoLenguaje->deleteProyectoLenguaje();
+            foreach ($arrayLenguajes as $lenguaje => $value) {
+                $this->proyectoLenguaje->setLenguajeId($value);
+                $request_proyecto_lenguaje = $this->proyectoLenguaje->insertProyectoLenguaje();
+            }
             $option = 2;
         }
         // dep($_POST);
@@ -87,6 +89,10 @@ class ProyectosNegocio extends Negocio
     {
         $this->dato->setId($id);
         $arrData = $this->dato->selectProyecto();
+        $this->proyectoLenguaje->setProyectoId($id);
+        $arrlenguajes = $this->proyectoLenguaje->selectLenguajes();
+        $arrData["lenguajes"] = $arrlenguajes;
+
         if (empty($arrData)) {
             $arrResponse = array('status' => false, 'msg' => "Datos no encontrados.");
         } else {

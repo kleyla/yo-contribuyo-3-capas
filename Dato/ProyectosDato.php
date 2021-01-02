@@ -8,7 +8,6 @@ class ProyectosDato extends Mysql
     private $strRepositorio;
     private $intEstado;
     private $strTags;
-    private $arrayLenguajes;
     private $intUsuarioId;
 
     public function __construct()
@@ -35,10 +34,6 @@ class ProyectosDato extends Mysql
     public function setTags(string $tags)
     {
         $this->strTags = $tags;
-    }
-    public function setLenguajes(array $lenguajes)
-    {
-        $this->arrayLenguajes = $lenguajes;
     }
     public function setUsuarioId(int $id)
     {
@@ -72,27 +67,18 @@ class ProyectosDato extends Mysql
                 $query_insert = "INSERT INTO proyectos(nombre, descripcion, repositorio, tags, usuario_id) VALUES (?,?,?,?,?)";
                 $arrData = array($this->strNombre, $this->strDescripcion, $this->strRepositorio, $this->strTags, $this->intUsuarioId);
                 $request_insert = $this->insert($query_insert, $arrData);
-                $return = $request_insert;
-                foreach ($this->arrayLenguajes as $lenguaje => $value) {
-                    $query_insert = "INSERT INTO proyecto_lenguaje(proyecto_id, lenguaje_id) VALUES (?,?)";
-                    $arrData = array($return, $value);
-                    $request_insert = $this->insert($query_insert, $arrData);
-                }
-                return $return;
+                return $request_insert;
             } else {
                 throw new Exception("exist");
             }
         } catch (Exception $e) {
-            return $return = $e->getMessage();
+            return $e->getMessage();
         }
     }
     public function selectProyecto()
     {
         $sql = "SELECT *  FROM proyectos WHERE id_proyecto = $this->intId";
         $request = $this->select($sql);
-        $sql = "SELECT lenguajes.*  FROM proyectos, lenguajes, proyecto_lenguaje WHERE id_proyecto = $this->intId AND proyecto_lenguaje.proyecto_id = proyectos.id_proyecto AND proyecto_lenguaje.lenguaje_id = lenguajes.id_lenguaje";
-        $request_lenguajes = $this->select_all($sql);
-        $request["lenguajes"] = $request_lenguajes;
         return $request;
     }
     public function updateProyecto()
@@ -108,11 +94,11 @@ class ProyectosDato extends Mysql
                 $sqlDel = "DELETE FROM proyecto_lenguaje WHERE proyecto_id = $this->intId";
                 $request_del = $this->delete($sqlDel);
                 // registrando nuevos
-                foreach ($this->arrayLenguajes as $lenguaje => $value) {
-                    $query_insert = "INSERT INTO proyecto_lenguaje(proyecto_id, lenguaje_id) VALUES (?,?)";
-                    $arrData = array($this->intId, $value);
-                    $request_insert = $this->insert($query_insert, $arrData);
-                }
+                // foreach ($this->arrayLenguajes as $lenguaje => $value) {
+                //     $query_insert = "INSERT INTO proyecto_lenguaje(proyecto_id, lenguaje_id) VALUES (?,?)";
+                //     $arrData = array($this->intId, $value);
+                //     $request_insert = $this->insert($query_insert, $arrData);
+                // }
                 return $request;
             } else {
                 throw new Exception("exist");

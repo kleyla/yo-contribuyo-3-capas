@@ -2,11 +2,11 @@
 $presentacion = ucwords($presentacion);
 $presentacionFile = "Presentacion/" . $presentacion . "/" . $presentacion . ".php";
 // echo $presentacionFile;
-// echo $presentacion;
 if (file_exists($presentacionFile)) {
-    // echo $method;
     require_once($presentacionFile);
+    // echo $presentacion;
     $presentacion = new $presentacion();
+    // echo $method;
     if (method_exists($presentacion, $method)) {
         // echo "Existe";
         $presentacion->{$method}($params);
