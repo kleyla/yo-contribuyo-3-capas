@@ -22,7 +22,7 @@ if (!empty($arrUrl[2])) {
     }
 }
 // print_r($arrUrl);
-
+// echo $method;
 require_once("Libraries/Core/Autoload.php");
 
 // Load

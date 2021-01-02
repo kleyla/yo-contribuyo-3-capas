@@ -44,10 +44,6 @@ class UsuariosDato extends Mysql
     {
         try {
             $return = "";
-            // $this->strNick = $nick;
-            // $this->strEmail = $email;
-            // $this->strPassword = $pass;
-            // $this->strRol = $rol;
             $sql = "SELECT * FROM usuarios WHERE nick = '$this->strNick' OR email = '$this->strEmail'";
             $request = $this->select_all($sql);
             if (empty($request)) {
@@ -117,5 +113,19 @@ class UsuariosDato extends Mysql
         } catch (Exception $e) {
             return $request = "error";
         }
+    }
+    public function getUsuarioLogin()
+    {
+        $sql = "SELECT id_usuario, estado FROM usuarios 
+                WHERE email = '$this->strEmail' and pass = '$this->strPassword'";
+        $request = $this->select($sql);
+        return $request;
+    }
+    public function sessionLogin()
+    {
+        $sql = "SELECT usuarios.nick, usuarios.email, usuarios.estado, usuarios.rol, usuarios.fecha FROM usuarios
+                WHERE id_usuario = $this->intId";
+        $request = $this->select($sql);
+        return $request;
     }
 }
