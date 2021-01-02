@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var request = window.XMLHttpRequest
         ? new XMLHttpRequest()
         : new ActiveXObject("Microsoft.XMLHTTP");
-      var ajaxUrl = base_url + "favoritos/setFavoritos";
+      var ajaxUrl = base_url + "favoritos/setFavoritos"; 
       var formData = new FormData(formFavorito);
       request.open("POST", ajaxUrl, true);
       request.send(formData);
