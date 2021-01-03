@@ -6,8 +6,8 @@ class RegisterNegocio
 
     public function __construct()
     {
-        require_once("Dato/UsuariosDato.php");
-        $this->usuario = new UsuariosDato();
+        require_once("Dato/UsuarioDato.php");
+        $this->usuario = new UsuarioDato();
     }
 
     public function registerUser(string $strEmail, string $strNick, string $strPass)

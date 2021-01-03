@@ -60,7 +60,7 @@
     <!-- The javascript plugin to display page loading on top-->
     <script src="<?= media(); ?>js/plugins/pace.min.js"></script>
     <script type="text/javascript" src="<?= media(); ?>js/plugins/sweetalert.min.js"></script>
-    <script src="<?= media(); ?><?= $data['script']; ?> "></script>
+    <script src="<?= media(); ?>js/functions/<?= $data['script']; ?> "></script>
     <script type="text/javascript">
         // Login Page Flipbox control
         $('.login-content [data-toggle="flip"]').click(function() {

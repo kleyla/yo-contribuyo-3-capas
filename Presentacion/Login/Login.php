@@ -17,7 +17,7 @@ class Login extends Presentacion
         $data["page_tag"] = "Login - Yo Contribuyo";
         $data["page_title"] = "Login";
         $data["page_name"] = "login";
-        $data["script"] = "js/functions_login.js";
+        $data["script"] = "login.js";
         $this->views->getView($this, "login", $data);
     }
     public function loginUser()

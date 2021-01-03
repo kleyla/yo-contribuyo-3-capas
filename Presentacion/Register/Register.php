@@ -17,7 +17,7 @@ class Register extends Presentacion
         $data["page_tag"] = "Registro - Yo Contribuyo";
         $data["page_title"] = "Registro";
         $data["page_name"] = "registro";
-        $data["script"] = "js/functions_register.js";
+        $data["script"] = "register.js";
         $this->views->getView($this, "register", $data);
     }
     public function registerUser()

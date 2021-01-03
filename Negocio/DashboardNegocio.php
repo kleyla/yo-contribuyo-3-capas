@@ -1,6 +1,6 @@
 <?php
 
-class DashboardNegocio extends Controllers
+class DashboardNegocio extends Negocio
 {
 
     function __construct()

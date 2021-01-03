@@ -52,7 +52,7 @@ class Home extends Presentacion
             $data["tag_name"] = "Articulo";
             $data["page_title"] = "Ver Articulo";
             $data["page_name"] = "articulo";
-            $data['script'] = 'js/functions_denuncias.js';
+            $data['script'] = 'denuncia.js';
             $arrData = $this->negocio->getArticulo($id);
             $data["articulo"] = $arrData;
             $this->views->getView($this, "verArticulo", $data);
@@ -65,7 +65,7 @@ class Home extends Presentacion
             $data["tag_name"] = "Proyecto";
             $data["page_title"] = "Ver Proyecto";
             $data["page_name"] = "proyectos";
-            $data['script'] = 'js/functions_acciones.js';
+            $data['script'] = 'acciones.js';
             $arrData = $this->negocio->getProyecto($id);
             $data["proyecto"] = $arrData;
             // dep($data);

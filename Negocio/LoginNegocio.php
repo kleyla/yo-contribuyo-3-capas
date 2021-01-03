@@ -3,11 +3,11 @@
 class LoginNegocio
 {
     private $usuario;
-    
+
     public function __construct()
     {
-        require_once("Dato/UsuariosDato.php");
-        $this->usuario = new UsuariosDato();
+        require_once("Dato/UsuarioDato.php");
+        $this->usuario = new UsuarioDato();
     }
     public function loginUser($strEmail, $strPass)
     {
