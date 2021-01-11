@@ -18,6 +18,6 @@ class Dashboard extends Presentacion
         $data["page_title"] = "Dashboard - Tienda";
         $data["page_name"] = "dashboard";
         $data["nav_dash"] = "active";
-        $this->views->getView($this, "dashboard", $data);
+        $this->getView("Dashboard/dashboard", $data);
     }
 }

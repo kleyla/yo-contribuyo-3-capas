@@ -1,6 +1,6 @@
 <?php
 
-class Logout extends Presentacion
+class Logout
 {
     public function __construct()
     {
@@ -8,6 +8,5 @@ class Logout extends Presentacion
         session_unset();
         session_destroy();
         header('location: ' . base_url() . 'login');
-        // parent::__construct();
     }
 }

@@ -11,7 +11,7 @@ class Lenguaje extends Presentacion
         parent::__construct();
     }
 
-    public function lenguaje()
+    public function lenguajes()
     {
         if ($_SESSION['userData']['rol'] == "Administrador") {
             // echo "mensaje desde el controlador";
@@ -20,8 +20,8 @@ class Lenguaje extends Presentacion
             $data["page_title"] = "Lenguajes - Yo contribuyo";
             $data["page_name"] = "lenguajes";
             $data["nav_lenguajes"] = "active";
-            $data["script"] = "lenguaje.js";
-            $this->views->getView($this, "lenguajes", $data);
+            $data["script"] = "Lenguaje/lenguajes.js";
+            $this->getView("Lenguaje/lenguajes", $data);
         } else {
             header('Location: ' . base_url() . 'dashboard');
         }

@@ -3,23 +3,33 @@ class Presentacion
 {
     public function __construct()
     {
-        $this->views = new Views();
+        // $this->views = new Views();
         $this->loadNegocio();
     }
     public function loadNegocio()
     {
         // HomeMode.php
-        $negocio = get_class($this) . "Negocio";
-        // $negocio = ucfirst(get_class($this));
-        // echo $negocio;
-        $routClass = "Negocio/" . $negocio . ".php";
-        if (file_exists($routClass)) {
+        $vista = get_class($this);
+        if ($vista != "Errors" && $vista != "Home" && $vista != "Dashboard" && $vista != "Register" && $vista != "Login") {
+            // echo $vista;
+            $negocio = $vista . "Negocio";
+            // $negocio = ucfirst(get_class($this));
+            // echo $negocio;
+            $routClass = "Negocio/" . $negocio . ".php";
             // echo $routClass;
-            require_once($routClass);
-            $this->negocio = new $negocio();
-            // echo "Negocio";
-        } else {
-            echo "No existe el negocio";
+            if (file_exists($routClass)) {
+                require_once($routClass);
+                $this->negocio = new $negocio();
+                // echo "Negocio";
+            } else {
+                echo "No existe el negocio";
+            }
         }
+    }
+    public function getView($view, $data = "")
+    {
+        $view = VIEWS  . $view . ".php";
+        // echo $view;
+        require_once($view);
     }
 }

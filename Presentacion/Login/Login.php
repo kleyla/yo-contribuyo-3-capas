@@ -10,6 +10,8 @@ class Login extends Presentacion
         }
         // echo "Presentacion login";
         parent::__construct();
+        require_once("Negocio/UsuarioNegocio.php");
+        $this->usuario = new UsuarioNegocio();
     }
     public function login()
     {
@@ -17,8 +19,8 @@ class Login extends Presentacion
         $data["page_tag"] = "Login - Yo Contribuyo";
         $data["page_title"] = "Login";
         $data["page_name"] = "login";
-        $data["script"] = "login.js";
-        $this->views->getView($this, "login", $data);
+        $data["script"] = "Login/login.js";
+        $this->getView("Login/login", $data);
     }
     public function loginUser()
     {
@@ -29,7 +31,7 @@ class Login extends Presentacion
             } else {
                 $strEmail = strtolower(strClean($_POST['txtEmail']));
                 $strPass = hash("SHA256", $_POST['txtPass']);
-                $arrResponse = $this->negocio->loginUser($strEmail, $strPass);
+                $arrResponse = $this->usuario->loginUser($strEmail, $strPass);
             }
             // dep($arrResponse);
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);

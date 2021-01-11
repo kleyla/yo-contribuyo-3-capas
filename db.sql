@@ -54,7 +54,7 @@ CREATE TABLE articulos (
   FOREIGN KEY (usuario_id) REFERENCES usuarios(id_usuario) ON UPDATE CASCADE ON DELETE RESTRICT
 );
 
-CREATE TABLE denuncia (
+CREATE TABLE denuncias (
   articulo_id INT NOT NULL,
   usuario_id INT NOT NULL,
   razones VARCHAR(255) NOT NULL,

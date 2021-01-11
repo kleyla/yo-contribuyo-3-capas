@@ -9,6 +9,8 @@ class Register extends Presentacion
             header('Location: ' . base_url() . 'dashboard');
         }
         parent::__construct();
+        require_once("Negocio/UsuarioNegocio.php");
+        $this->usuario = new UsuarioNegocio();
     }
 
     public function register()
@@ -17,8 +19,8 @@ class Register extends Presentacion
         $data["page_tag"] = "Registro - Yo Contribuyo";
         $data["page_title"] = "Registro";
         $data["page_name"] = "registro";
-        $data["script"] = "register.js";
-        $this->views->getView($this, "register", $data);
+        $data["script"] = "Register/register.js";
+        $this->getView("Register/register", $data);
     }
     public function registerUser()
     {
@@ -29,8 +31,8 @@ class Register extends Presentacion
             } else {
                 $strEmail = strtolower(strClean($_POST['txtEmail']));
                 $strNick = strClean($_POST['txtNick']);
-                $strPass = hash("SHA256", $_POST['txtPass']); 
-                $arrResponse = $this->negocio->registerUser($strEmail, $strNick, $strPass);
+                $strPass = hash("SHA256", $_POST['txtPass']);
+                $arrResponse = $this->usuario->registerUser($strEmail, $strNick, $strPass);
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }

@@ -11,7 +11,7 @@ class Articulo extends Presentacion
         parent::__construct();
     }
 
-    public function articulo()
+    public function articulos()
     {
         // echo "mensaje desde el controlador";
         $data["page_id"] = 1;
@@ -19,8 +19,8 @@ class Articulo extends Presentacion
         $data["page_title"] = "Articulos - Yo contribuyo";
         $data["page_name"] = "articulos";
         $data["nav_articulos"] = "active";
-        $data["script"] = "articulo.js";
-        $this->views->getView($this, "articulos", $data);
+        $data["script"] = "Articulo/articulos.js";
+        $this->getView("Articulo/articulos", $data);
     }
     public function getArticulos()
     {
@@ -36,10 +36,10 @@ class Articulo extends Presentacion
         $data["page_tag"] = "Articulos";
         $data["page_title"] = "Articulos - Formulario";
         $data["page_name"] = "articulos";
-        $data["script"] = "articulo_nuevo.js";
+        $data["script"] = "Articulo/articulos.js";
         $data["id_articulo"] = $id;
         // dep($lenguajes);
-        $this->views->getView($this, "form", $data);
+        $this->getView("Articulo/form", $data);
     }
     public function setArticulo()
     {

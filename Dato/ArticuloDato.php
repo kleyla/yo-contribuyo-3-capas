@@ -105,4 +105,28 @@ class ArticuloDato extends Mysql
             return $request = "error";
         }
     }
+    // home
+    public function getActiveArticulos()
+    {
+        try {
+            $sql = "SELECT articulos.*, usuarios.nick FROM articulos, usuarios 
+                WHERE articulos.estado = 1 
+                AND articulos.usuario_id = usuarios.id_usuario";
+            $request = $this->select_all($sql);
+            return $request;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+    public function getArticulo()
+    {
+        try {
+            $sql = "SELECT articulos.*, usuarios.nick FROM articulos, usuarios WHERE id_articulo = '$this->intId' 
+                AND articulos.usuario_id = usuarios.id_usuario";
+            $request = $this->select($sql);
+            return $request;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }

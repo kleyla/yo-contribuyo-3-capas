@@ -10,15 +10,15 @@ class Favorito extends Presentacion
         }
         parent::__construct();
     }
-    public function favorito()
+    public function favoritos()
     {
         $data["page_id"] = 1;
         $data["page_tag"] = "Favoritos";
         $data["page_title"] = "Favoritos - Yo contribuyo";
         $data["page_name"] = "favoritos";
         $data["nav_favoritos"] = "active";
-        $data["script"] = "favorito.js";
-        $this->views->getView($this, "favoritos", $data);
+        $data["script"] = "Favorito/favorito.js";
+        $this->getView("Favorito/favoritos", $data);
     }
     public function getFavoritos()
     {

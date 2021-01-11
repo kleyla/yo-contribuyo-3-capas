@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Karen Rodriguez">
     <meta name="theme-color" content="#009688">
-    <link rel="shortcut icon" href="<?= media(); ?>images/uploads/cv.svg">
+    <link rel="shortcut icon" href="<?= media(); ?>images/uploads/programacion-web.svg">
     <title><?= $data["page_tag"]; ?></title>
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="<?= media(); ?>css/main.css">
@@ -60,7 +60,7 @@
     <!-- The javascript plugin to display page loading on top-->
     <script src="<?= media(); ?>js/plugins/pace.min.js"></script>
     <script type="text/javascript" src="<?= media(); ?>js/plugins/sweetalert.min.js"></script>
-    <script src="<?= media(); ?>js/functions/<?= $data['script']; ?> "></script>
+    <script src="<?= base_url(); ?>Presentacion/<?= $data['script']; ?> "></script>
     <script type="text/javascript">
         // Login Page Flipbox control
         $('.login-content [data-toggle="flip"]').click(function() {

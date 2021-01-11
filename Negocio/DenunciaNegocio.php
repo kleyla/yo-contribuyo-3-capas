@@ -26,4 +26,21 @@ class DenunciaNegocio extends Negocio
             echo $e->getMessage();
         }
     }
+    public function getDenuncias(int $idArticulo)
+    {
+        $this->dato->setArticuloId($idArticulo);
+        return  $this->dato->getDenunciasByArticulo();
+    }
+    public function deleteDenuncia(int $intIdArticulo, int $intIdUsuario)
+    {
+        $this->dato->setArticuloId($intIdArticulo);
+        $this->dato->setUsuarioId($intIdUsuario);
+        $requestDelete = $this->dato->disableDenuncia();
+        if ($requestDelete === "ok") {
+            $arrResponse = array('status' => true, 'msg' => "Se ha eliminado la denuncia");
+        } else {
+            $arrResponse = array('status' => false, 'msg' => "Error al eliminar la denuncia.");
+        }
+        return $arrResponse;
+    }
 }

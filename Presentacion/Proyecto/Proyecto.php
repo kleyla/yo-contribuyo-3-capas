@@ -10,9 +10,11 @@ class Proyecto extends Presentacion
             header('Location: ' . base_url() . 'login');
         }
         parent::__construct();
+        require_once("Negocio/LenguajeNegocio.php");
+        $this->lenguaje = new LenguajeNegocio();
     }
 
-    public function proyecto()
+    public function proyectos()
     {
         // echo "mensaje desde el controlador";
         $data["page_id"] = 1;
@@ -20,8 +22,8 @@ class Proyecto extends Presentacion
         $data["page_title"] = "Proyectos - Yo contribuyo";
         $data["page_name"] = "proyectos";
         $data["nav_proyectos"] = "active";
-        $data["script"] = "proyecto.js";
-        $this->views->getView($this, "proyectos", $data);
+        $data["script"] = "Proyecto/proyectos.js";
+        $this->getView("Proyecto/proyectos", $data);
     }
     public function getProyectos()
     {
@@ -37,12 +39,12 @@ class Proyecto extends Presentacion
         $data["page_tag"] = "Proyectos";
         $data["page_title"] = "Proyectos - Formulario";
         $data["page_name"] = "proyectos";
-        $data["script"] = "proyecto_nuevo.js";
-        $lenguajes = $this->negocio->getActiveLenguajes();
+        $data["script"] = "Proyecto/proyectos.js";
+        $lenguajes = $this->lenguaje->getActiveLenguajes();
         $data["lenguajes"] = $lenguajes;
         $data["id_proyecto"] = $id;
         // dep($lenguajes);
-        $this->views->getView($this, "form", $data);
+        $this->getView("Proyecto/form", $data);
     }
     public function setProyecto()
     {

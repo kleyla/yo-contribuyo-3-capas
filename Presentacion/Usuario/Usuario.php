@@ -11,7 +11,7 @@ class Usuario extends Presentacion
         }
         parent::__construct();
     }
-    public function usuario()
+    public function usuarios()
     {
         if ($_SESSION['userData']['rol'] == "Administrador") {
             // echo "Usuarios";
@@ -20,8 +20,8 @@ class Usuario extends Presentacion
             $data["page_title"] = "Usuarios - Yo contribuyo";
             $data["page_name"] = "usuarios";
             $data["nav_usuarios"] = "active";
-            $data["script"] = "usuario.js";
-            $this->views->getView($this, "usuarios", $data);
+            $data["script"] = "Usuario/usuarios.js";
+            $this->getView("Usuario/usuarios", $data);
         } else {
             header('Location: ' . base_url() . 'dashboard');
         }
@@ -77,7 +77,7 @@ class Usuario extends Presentacion
         $data["page_tag"] = "Perfil";
         $data["page_title"] = "Perfil de usuario";
         $data["page_name"] = "perfil";
-        $data["script"] = "js/functions_perfil.js";
-        $this->views->getView($this, "perfil", $data);
+        $data["script"] = "Usuario/perfil.js";
+        $this->getView("Usuario/perfil", $data);
     }
 }

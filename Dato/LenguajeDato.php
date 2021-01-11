@@ -103,4 +103,10 @@ class LenguajeDato extends Mysql
             return $request = "error";
         }
     }
+    public function allActiveLenguajes()
+    {
+        $sql = "SELECT * FROM lenguajes WHERE estado = 1";
+        $request = $this->select_all($sql);
+        return $request;
+    }
 }

@@ -27,8 +27,33 @@ class Denuncia extends Presentacion
             echo $e->getMessage();
         }
     }
-    public function exa()
+    public function verDenuncias(int $idArticulo)
     {
-        echo "Denuncia";
+        $data["page_id"] = 3;
+        $data["page_tag"] = "Denuncias";
+        $data["page_title"] = "Denuncias - Yo contribuyo";
+        $data["page_name"] = "denuncias";
+        $data["nav_articulos"] = "active";
+        $data["script"] = "Denuncia/denuncias.js";
+        $data["id_articulo"] = $idArticulo;
+        $this->getView("Denuncia/verDenuncias", $data);
+    }
+    public function getDenuncias(int $idArticulo)
+    {
+        if ($idArticulo > 0) {
+            $arrResponse =  $this->negocio->getDenuncias($idArticulo);
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+    public function deleteDenuncia()
+    {
+        if ($_POST) {
+            $intIdArticulo = intval($_POST["idArticulo"]);
+            $intIdUsuario = intval($_POST["idUsuario"]);
+            $arrResponse = $this->negocio->deleteDenuncia($intIdArticulo, $intIdUsuario);
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
     }
 }

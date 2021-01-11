@@ -11,7 +11,7 @@
 <script src="<?= media(); ?>js/b5/bootstrap.min.js"></script>
 
 <?php if ($data['script']) { ?>
-    <script src="<?= media(); ?>js/functions/<?= $data['script']; ?> "></script>
+    <script src="<?= base_url(); ?>Presentacion/<?= $data['script']; ?> "></script>
 <?php } ?>
 </body>
 

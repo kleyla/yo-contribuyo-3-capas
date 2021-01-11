@@ -15,14 +15,14 @@ class UsuarioNegocio extends Negocio
             if ($arrData[$i]["estado"] == 1) {
                 $arrData[$i]["estado"] = '<span class="badge badge-success">Activo</span>';
                 $arrData[$i]["opciones"] = '<div class="text-center">
-                        <button class="btn btn-primary btn-sm btnEditUsuario" rl="' . $arrData[$i]['id_usuario'] . '" title="Editar" ><i class="fa fa-pencil"></i></button>
-                        <button class="btn btn-danger btn-sm btnDelUsuario" rl="' . $arrData[$i]['id_usuario'] . '" title="Eliminar" ><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-primary btn-sm" onclick="editUsuario(' . $arrData[$i]['id_usuario'] . ')" title="Editar" ><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteUsuario(' . $arrData[$i]['id_usuario'] . ')" title="Eliminar" ><i class="fa fa-trash"></i></button>
                     </div>';
             } else {
                 $arrData[$i]["estado"] = '<span class="badge badge-danger">Inactivo</span>';
                 $arrData[$i]["opciones"] = '<div class="text-center">
-                        <button class="btn btn-primary btn-sm btnEditUsuario" rl="' . $arrData[$i]['id_usuario'] . '" title="Editar" ><i class="fa fa-pencil"></i></button>
-                        <button class="btn btn-warning btn-sm btnEnableUsuario" rl="' . $arrData[$i]['id_usuario'] . '" title="Habilitar" ><i class="fa fa-unlock"></i></button>
+                        <button class="btn btn-primary btn-sm" onclick="editUsuario(' . $arrData[$i]['id_usuario'] . ')" title="Editar" ><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-warning btn-sm" onclick="enableUsuario(' . $arrData[$i]['id_usuario'] . ')" title="Habilitar" ><i class="fa fa-unlock"></i></button>
                     </div>';
             }
         }
@@ -100,5 +100,49 @@ class UsuarioNegocio extends Negocio
         $data["page_name"] = "perfil";
         $data["script"] = "js/functions_perfil.js";
         $this->views->getView($this, "perfil", $data);
+    }
+    public function loginUser($strEmail, $strPass)
+    {
+        $this->dato->setEmail($strEmail);
+        $this->dato->setPassword($strPass);
+        $requestUser = $this->dato->getUsuarioLogin();
+        if (empty($requestUser)) {
+            $arrResponse = array('status' => false, 'msg' => "El usuario o la contrasena es incorrecto");
+        } else {
+            $arrData = $requestUser;
+            if ($arrData['estado'] == 1) {
+                $_SESSION['idUser'] = $arrData['id_usuario'];
+                $_SESSION['login'] = true;
+                $this->dato->setId($_SESSION['idUser']);
+                $arrData = $this->dato->sessionLogin();
+                $_SESSION['userData'] = $arrData;
+                $arrResponse = array('status' => true, 'msg' => "ok");
+            } else {
+                $arrResponse = array('status' => false, 'msg' => "Usuario inactivo");
+            }
+        }
+        return $arrResponse;
+    }
+    public function registerUser(string $strEmail, string $strNick, string $strPass)
+    {
+        $this->dato->setEmail($strEmail);
+        $this->dato->setNick($strNick);
+        $this->dato->setPassword($strPass);
+        $this->dato->setRol("Contribuidor");
+        $requestUser = $this->dato->insertUsuario();
+        // dep($requestUser);
+        if ($requestUser === "exist") {
+            $arrResponse = array('status' => false, 'msg' => "El email o nick ya existen");
+        } else if ($requestUser > 0) {
+            $_SESSION['idUser'] = $requestUser;
+            $_SESSION['login'] = true;
+            $this->dato->setId($_SESSION['idUser']);
+            $arrData = $this->dato->sessionLogin();
+            $_SESSION['userData'] = $arrData;
+            $arrResponse = array('status' => true, 'msg' => "ok");
+        } else {
+            $arrResponse = array('status' => false, 'msg' => $requestUser);
+        }
+        return $arrResponse;
     }
 }

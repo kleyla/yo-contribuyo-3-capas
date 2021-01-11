@@ -5,6 +5,10 @@ class Home extends Presentacion
     public function __construct()
     {
         parent::__construct();
+        require_once("Negocio/ProyectoNegocio.php");
+        $this->proyecto = new ProyectoNegocio();
+        require_once("Negocio/ArticuloNegocio.php");
+        $this->articulo = new ArticuloNegocio();
     }
 
     public function home($params)
@@ -14,24 +18,24 @@ class Home extends Presentacion
         $data["tag_name"] = "Home";
         $data["page_title"] = "Pagina principal";
         $data["page_name"] = "home";
-        $arrData = $this->negocio->proyectos();
+        $arrData = $this->proyecto->getProyectosHome();
         $data["proyectos"] = $arrData;
-        $arrData = $this->negocio->articulos();
+        $arrData = $this->articulo->getArticulosHome();
         $data["articulos"] = $arrData;
         // dep($data);
-        $this->views->getView($this, "home", $data);
+        $this->getView("Home/home", $data);
     }
-   
+
     public function proyectos()
     {
         session_start();
         $data["tag_name"] = "Proyectos";
         $data["page_title"] = "Ver Proyectos";
         $data["page_name"] = "proyectos";
-        $arrData = $this->negocio->proyectos();
+        $arrData = $this->proyecto->getProyectosHome();
         $data["proyectos"] = $arrData;
         // dep($data);
-        $this->views->getView($this, "verProyectos", $data);
+        $this->getView("Proyecto/verProyectos", $data);
     }
 
     public function articulos()
@@ -41,9 +45,9 @@ class Home extends Presentacion
         $data["tag_name"] = "Articulos";
         $data["page_title"] = "Ver Articulos";
         $data["page_name"] = "articulos";
-        $arrData = $this->negocio->articulos();
+        $arrData = $this->articulo->getArticulosHome();
         $data["articulos"] = $arrData;
-        $this->views->getView($this, "verArticulos", $data);
+        $this->getView("Articulo/verArticulos", $data);
     }
     public function verArticulo($id)
     {
@@ -52,10 +56,10 @@ class Home extends Presentacion
             $data["tag_name"] = "Articulo";
             $data["page_title"] = "Ver Articulo";
             $data["page_name"] = "articulo";
-            $data['script'] = 'denuncia.js';
-            $arrData = $this->negocio->getArticulo($id);
+            $data['script'] = 'Denuncia/denuncias.js';
+            $arrData = $this->articulo->getArticuloHome($id);
             $data["articulo"] = $arrData;
-            $this->views->getView($this, "verArticulo", $data);
+            $this->getView("Articulo/verArticulo", $data);
         }
     }
     public function verProyecto($id)
@@ -65,15 +69,11 @@ class Home extends Presentacion
             $data["tag_name"] = "Proyecto";
             $data["page_title"] = "Ver Proyecto";
             $data["page_name"] = "proyectos";
-            $data['script'] = 'acciones.js';
-            $arrData = $this->negocio->getProyecto($id);
+            $data['script'] = 'Accion/acciones.js';
+            $arrData = $this->proyecto->getProyectoHome($id);
             $data["proyecto"] = $arrData;
             // dep($data);
-            $this->views->getView($this, "verProyecto", $data);
+            $this->getView("Proyecto/verProyecto", $data);
         }
-    }
-    public function exa()
-    {
-        $this->negocio->exa();
     }
 }

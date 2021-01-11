@@ -8,24 +8,33 @@
                   </div>
           </div>
           <ul class="app-menu">
-                  <li><a class="app-menu__item <?php if($data['nav_dash']) { echo $data['nav_dash'];} ?>" href="<?= base_url(); ?>dashboard"><i class="app-menu__icon fa fa-dashboard"></i>
+                  <li><a class="app-menu__item <?php if ($data['nav_dash']) {
+                                                        echo $data['nav_dash'];
+                                                } ?>" href="<?= base_url(); ?>dashboard"><i class="app-menu__icon fa fa-dashboard"></i>
                                   <span class="app-menu__label">Dashboard</span></a></li>
                   <?php if ($_SESSION['userData']['rol'] == "Administrador") { ?>
-                          <li><a class="app-menu__item <?php if($data['nav_usuarios']) { echo $data['nav_usuarios'];} ?>" href="<?= base_url(); ?>usuario"><i class="app-menu__icon fa fa-user"></i>
+                          <li><a class="app-menu__item <?php if ($data['nav_usuarios']) {
+                                                                echo $data['nav_usuarios'];
+                                                        } ?>" href="<?= base_url(); ?>usuario/usuarios"><i class="app-menu__icon fa fa-user"></i>
                                           <span class="app-menu__label">Usuarios</span></a></li>
                   <?php } ?>
-                  <li><a class="app-menu__item <?php if($data['nav_proyectos']) { echo $data['nav_proyectos'];} ?>" href="<?= base_url(); ?>proyecto"><i class="app-menu__icon fa fa-archive"></i>
+                  <li><a class="app-menu__item <?php if ($data['nav_proyectos']) {
+                                                        echo $data['nav_proyectos'];
+                                                } ?>" href="<?= base_url(); ?>proyecto/proyectos"><i class="app-menu__icon fa fa-archive"></i>
                                   <span class="app-menu__label">Proyectos</span></a></li>
                   <?php if ($_SESSION['userData']['rol'] == "Administrador") { ?>
-                          <li><a class="app-menu__item <?php if($data['nav_lenguajes']) { echo $data['nav_lenguajes'];} ?>" href="<?= base_url(); ?>lenguaje"><i class="app-menu__icon fa fa-code"></i>
+                          <li><a class="app-menu__item <?php if ($data['nav_lenguajes']) {
+                                                                echo $data['nav_lenguajes'];
+                                                        } ?>" href="<?= base_url(); ?>lenguaje/lenguajes"><i class="app-menu__icon fa fa-code"></i>
                                           <span class="app-menu__label">Lenguajes</span></a></li>
                   <?php } ?>
-                  <li><a class="app-menu__item <?php if($data['nav_articulos']) { echo $data['nav_articulos'];} ?>" href="<?= base_url(); ?>articulo"><i class="app-menu__icon fa fa-newspaper-o"></i>
+                  <li><a class="app-menu__item <?php if ($data['nav_articulos']) {
+                                                        echo $data['nav_articulos'];
+                                                } ?>" href="<?= base_url(); ?>articulo/articulos"><i class="app-menu__icon fa fa-newspaper-o"></i>
                                   <span class="app-menu__label">Articulos</span></a></li>
-                  <li><a class="app-menu__item <?php if($data['nav_favoritos']) { echo $data['nav_favoritos'];} ?>" href="<?= base_url(); ?>favorito"><i class="app-menu__icon fa fa-heart"></i>
+                  <li><a class="app-menu__item <?php if ($data['nav_favoritos']) {
+                                                        echo $data['nav_favoritos'];
+                                                } ?>" href="<?= base_url(); ?>favorito/favoritos"><i class="app-menu__icon fa fa-heart"></i>
                                   <span class="app-menu__label">Mis favoritos</span></a></li>
-                  <li><a class="app-menu__item <?php if($data['nav_dash']) { echo $data['nav_dash'];} ?>" href="<?= base_url(); ?>dashboard"><i class="app-menu__icon fa fa-file-code-o"></i>
-                                  <span class="app-menu__label">Docs</span></a></li>
-
           </ul>
   </aside>
