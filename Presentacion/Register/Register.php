@@ -20,7 +20,7 @@ class Register extends Presentacion
         $data["page_title"] = "Registro";
         $data["page_name"] = "registro";
         $data["script"] = "Register/register.js";
-        $this->getView("Register/register", $data);
+        $this->getView("Register/registers", $data);
     }
     public function registerUser()
     {

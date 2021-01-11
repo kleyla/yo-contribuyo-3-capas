@@ -23,7 +23,7 @@ class Home extends Presentacion
         $arrData = $this->articulo->getArticulosHome();
         $data["articulos"] = $arrData;
         // dep($data);
-        $this->getView("Home/home", $data);
+        $this->getView("Home/homes", $data);
     }
 
     public function proyectos()

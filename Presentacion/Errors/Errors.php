@@ -11,7 +11,7 @@ class Errors extends Presentacion
     public function notFound()
     {
         // echo "error";
-        $this->views->getView($this, "errors");
+        $this->getView("Errors/errores");
     }
 }
 
