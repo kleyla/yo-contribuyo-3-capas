@@ -90,22 +90,7 @@ function editArticulo() {
           //   console.log(request.responseText);
           var objData = JSON.parse(request.responseText);
           if (objData.status) {
-            document.querySelector("#idArticulo").value =
-              objData.data.id_articulo;
-            document.querySelector("#txtTitulo").value = objData.data.titulo;
-            document.querySelector("#txtContenido").value =
-              objData.data.contenido;
-            if (objData.data.estado == 1) {
-              var optionSelect =
-                '<option value="1" selected class="notBlock">Publicar</option>';
-            } else {
-              var optionSelect =
-                '<option value="2" selected class="notBlock">Borrador</option>';
-            }
-            var htmlSelect = `${optionSelect}
-                              <option value="1">Publicar</option>
-                              <option value="2">Borrador</option>`;
-            document.querySelector("#listStatus").innerHTML = htmlSelect;
+            updateData(objData.data);
           } else {
             swal("Error", objData.msg, "error");
           }
@@ -113,6 +98,22 @@ function editArticulo() {
       };
     }
   }
+}
+function updateData(data) {
+  document.querySelector("#idArticulo").value = data.id_articulo;
+  document.querySelector("#txtTitulo").value = data.titulo;
+  document.querySelector("#txtContenido").value = data.contenido;
+  if (data.estado == 1) {
+    var optionSelect =
+      '<option value="1" selected class="notBlock">Publicar</option>';
+  } else {
+    var optionSelect =
+      '<option value="2" selected class="notBlock">Borrador</option>';
+  }
+  var htmlSelect = `${optionSelect}
+                              <option value="1">Publicar</option>
+                              <option value="2">Borrador</option>`;
+  document.querySelector("#listStatus").innerHTML = htmlSelect;
 }
 function deleteArticulo(id) {
   var idArticulo = id;

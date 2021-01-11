@@ -17,7 +17,7 @@ class Favorito extends Presentacion
         $data["page_title"] = "Favoritos - Yo contribuyo";
         $data["page_name"] = "favoritos";
         $data["nav_favoritos"] = "active";
-        $data["script"] = "Favorito/favorito.js";
+        $data["script"] = "Favorito/favoritos.js";
         $this->getView("Favorito/favoritos", $data);
     }
     public function getFavoritos()
