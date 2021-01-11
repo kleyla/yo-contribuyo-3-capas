@@ -25,7 +25,7 @@
 
         </div>
     </div>
-    <?php if ($_SESSION['login']) { ?>
+    <?php if (array_key_exists("login", $_SESSION)) { ?>
         <div class="text-center mt-4">
             <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#DenunciaModal">
                 Denunciar
@@ -35,7 +35,7 @@
     <?php } ?>
 
 </div>
-<?php if ($_SESSION['login']) {
+<?php if (array_key_exists("login", $_SESSION)) {
     getModal("modalDenuncias", $data);
 } ?>
 <?php footerPublic($data); ?>

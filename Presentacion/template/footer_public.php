@@ -10,7 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
 <script src="<?= media(); ?>js/b5/bootstrap.min.js"></script>
 
-<?php if ($data['script']) { ?>
+<?php if (array_key_exists('script', $data)) { ?>
     <script src="<?= base_url(); ?>Presentacion/<?= $data['script']; ?> "></script>
 <?php } ?>
 </body>

@@ -64,7 +64,7 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav">
-                    <?php if ($_SESSION['login']) { ?>
+                    <?php if (array_key_exists('login', $_SESSION)) { ?>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="<?php echo base_url(); ?>dashboard">Dashboard</a>
                         </li>
