@@ -32,4 +32,15 @@ class ComentarioNegocio extends Negocio
             echo $e->getMessage();
         }
     }
+    public function deleteComentario(int $intId)
+    {
+        $this->accion->setId($intId);
+        $requestDelete = $this->accion->disableAccion();
+        if ($requestDelete === "ok") {
+            $arrResponse = array('status' => true, 'msg' => "Se ha eliminado el comentario");
+        } else {
+            $arrResponse = array('status' => false, 'msg' => "Error al eliminar el comentario.");
+        }
+        return $arrResponse;
+    }
 }

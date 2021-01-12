@@ -42,4 +42,19 @@ class AccionDato extends Mysql
         $request_del = $this->delete($sqlDel);
         return 1;
     }
+    public function disableAccion()
+    {
+        try {
+            $sql = "UPDATE acciones SET estado = ? WHERE id_accion = $this->intId";
+            $arrData = array(0);
+            $request = $this->update($sql, $arrData);
+            if ($request) {
+                return $request = "ok";
+            } else {
+                throw new Exception("error");
+            }
+        } catch (Exception $e) {
+            return $request = "error";
+        }
+    }
 }
