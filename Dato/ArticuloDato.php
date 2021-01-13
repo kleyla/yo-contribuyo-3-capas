@@ -1,6 +1,6 @@
 <?php
 
-class ArticuloDato extends Mysql
+class ArticuloDato extends Conexion
 {
     private $intId;
     private $strTitulo;

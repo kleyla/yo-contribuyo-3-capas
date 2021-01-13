@@ -1,6 +1,6 @@
 <?php
 
-class LenguajeDato extends Mysql
+class LenguajeDato extends Conexion
 {
     private $intId;
     private $strNombre;

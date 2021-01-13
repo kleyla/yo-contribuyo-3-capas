@@ -1,6 +1,6 @@
 <?php
 
-class ComentarioDato extends Mysql
+class ComentarioDato extends Conexion
 {
     private $intAccionId;
     private $strContenido;

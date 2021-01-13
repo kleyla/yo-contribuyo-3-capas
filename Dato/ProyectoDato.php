@@ -1,6 +1,6 @@
 <?php
 
-class ProyectoDato extends Mysql
+class ProyectoDato extends Conexion
 {
     private $intId;
     private $strNombre;
