@@ -33,8 +33,8 @@ class FavoritoNegocio extends Negocio
                 $accion_id = $this->dato->existeFavorito($intIdProyecto);
                 if ($accion_id > 0) {
                     // FAVORITO
-                    $this->dato->setAccionId($accion_id);
-                    $request_delete = $this->dato->deleteFavorito();
+                    // $this->dato->setAccionId($accion_id);
+                    // $request_delete = $this->dato->deleteFavorito();
                     // ACCION
                     $this->accion->setId($accion_id);
                     $request_delete = $this->accion->deleteAccion();
