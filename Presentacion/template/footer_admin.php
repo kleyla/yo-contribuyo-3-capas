@@ -13,7 +13,7 @@
 <!-- Data table plugin-->
 <script type="text/javascript" src="<?= media(); ?>js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?= media(); ?>js/plugins/dataTables.bootstrap.min.js"></script>
-<?php if ($data['script']) { ?>
+<?php if (array_key_exists("script", $data)) { ?>
     <script src="<?= base_url(); ?>Presentacion/<?= $data['script']; ?> "></script>
 <?php } ?>
 

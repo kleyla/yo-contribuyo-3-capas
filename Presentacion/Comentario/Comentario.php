@@ -27,4 +27,13 @@ class Comentario extends Presentacion
             echo $e->getMessage();
         }
     }
+    public function deleteComentario()
+    {
+        if ($_POST) {
+            $intId = intval($_POST["idAccion"]);
+            $arrResponse = $this->negocio->deleteComentario($intId);
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
 }

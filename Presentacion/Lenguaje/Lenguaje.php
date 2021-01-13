@@ -28,6 +28,7 @@ class Lenguaje extends Presentacion
     }
     public function getLenguajes()
     {
+        // echo "Desde el metodo";
         $arrData = $this->negocio->getLenguajes();
         // FORMATO JSON
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
