@@ -21,18 +21,25 @@ headerAdmin($data);
                         <input type="hidden" id="idProyecto" name="idProyecto" value="<?= $data["id_proyecto"] ?>">
                         <div class="tile-body">
                             <div class="row">
-                                <div class="form-group col-md-12 col-lg-4">
-                                    <label class="control-label">Nombre</label>
-                                    <input value="" class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre" required>
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Nombre</label>
+                                        <input value="" class="form-control" id="txtNombre" name="txtNombre" type="text" placeholder="Nombre" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Repositorio oficial</label>
+                                        <input class="form-control" id="txtRepositorio" name="txtRepositorio" value="https://" type="text" placeholder="Link" required>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-12 col-lg-4">
-                                    <label class="control-label">Descripcion</label>
-                                    <textarea class="form-control" id="txtDescripcion" name="txtDescripcion" rows="2" placeholder="Descripcion del rol" required></textarea>
+                                <div class="col-md-12 col-lg-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Descripcion</label>
+                                        <textarea class="form-control" id="txtDescripcion" name="txtDescripcion" rows="4" placeholder="Descripcion del rol" required></textarea>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-12 col-lg-4">
-                                    <label class="control-label">Repositorio oficial</label>
-                                    <input class="form-control" id="txtRepositorio" name="txtRepositorio" type="text" placeholder="Link" required>
-                                </div>
+
+
+
                                 <div class="form-group col-md-12 col-md-8">
                                     <label class="control-label">Tags <span>(Separar por comas)</span></label>
                                     <input value="" class="form-control" id="txtTags" name="txtTags" type="text" placeholder="Tags">

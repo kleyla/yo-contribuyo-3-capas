@@ -11,7 +11,7 @@ class Usuario extends Presentacion
         }
         parent::__construct();
     }
-    public function usuarios()
+    public function index()
     {
         if ($_SESSION['userData']['rol'] == "Administrador") {
             // echo "Usuarios";

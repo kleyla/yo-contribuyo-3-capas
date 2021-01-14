@@ -14,7 +14,7 @@ class Proyecto extends Presentacion
         $this->lenguaje = new LenguajeNegocio();
     }
 
-    public function proyectos()
+    public function index()
     {
         // echo "mensaje desde el controlador";
         $data["page_id"] = 1;

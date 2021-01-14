@@ -63,7 +63,7 @@ function setArticulo() {
                 closeOnConfirm: false,
               },
               function (isConfirm) {
-                window.location.href = base_url + "articulo/articulos";
+                window.location.href = base_url + "articulo/index";
               }
             );
           } else {

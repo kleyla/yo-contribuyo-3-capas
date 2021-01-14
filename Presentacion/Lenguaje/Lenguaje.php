@@ -11,7 +11,7 @@ class Lenguaje extends Presentacion
         parent::__construct();
     }
 
-    public function lenguajes()
+    public function index()
     {
         if ($_SESSION['userData']['rol'] == "Administrador") {
             // echo "mensaje desde el controlador";

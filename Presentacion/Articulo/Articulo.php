@@ -11,7 +11,7 @@ class Articulo extends Presentacion
         parent::__construct();
     }
 
-    public function articulos()
+    public function index()
     {
         // echo "mensaje desde el controlador";
         $data["page_id"] = 1;

@@ -75,7 +75,7 @@ function setProyecto() {
                 closeOnConfirm: false,
               },
               function (isConfirm) {
-                window.location.href = base_url + "proyecto/proyectos";
+                window.location.href = base_url + "proyecto/index";
               }
             );
           } else {

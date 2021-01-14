@@ -10,7 +10,7 @@ class Favorito extends Presentacion
         }
         parent::__construct();
     }
-    public function favoritos()
+    public function index()
     {
         $data["page_id"] = 1;
         $data["page_tag"] = "Favoritos";
