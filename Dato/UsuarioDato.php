@@ -59,9 +59,8 @@ class UsuarioDato extends Conexion
             return $return = "exist";
         }
     }
-    public function selectUsuario(int $id)
+    public function selectUsuario()
     {
-        $this->intId = $id;
         $sql = "SELECT * FROM usuarios WHERE id_usuario = $this->intId";
         $request = $this->select($sql);
         return $request;

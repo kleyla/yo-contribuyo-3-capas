@@ -63,7 +63,8 @@ class UsuarioNegocio extends Negocio
     }
     public function getUsuario(int $id)
     {
-        $arrData = $this->dato->selectUsuario($id);
+        $this->dato->setId($id);
+        $arrData = $this->dato->selectUsuario();
         if (empty($arrData)) {
             $arrResponse = array('status' => false, 'msg' => "Datos no encontrados.");
         } else {
@@ -92,14 +93,6 @@ class UsuarioNegocio extends Negocio
             $arrResponse = array('status' => false, 'msg' => "Error al habilitar el Usuario.");
         }
         return $arrResponse;
-    }
-    public function perfil()
-    {
-        $data["page_tag"] = "Perfil";
-        $data["page_title"] = "Perfil de usuario";
-        $data["page_name"] = "perfil";
-        $data["script"] = "js/functions_perfil.js";
-        $this->views->getView($this, "perfil", $data);
     }
     public function loginUser($strEmail, $strPass)
     {
